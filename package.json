@@ -1,0 +1,27 @@
+{
+  "name": "caps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vendor.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint **/*.js",
+    "test": "jest --verbose --coverage",
+    "test-watch": "jest --watchAll --verbose --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetUllrichorDieTrying/caps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GetUllrichorDieTrying/caps/issues"
+  },
+  "homepage": "https://github.com/GetUllrichorDieTrying/caps#readme",
+  "dependencies": {
+    "chance": "^1.1.8",
+    "jest": "^28.1.1"
+  }
+}
