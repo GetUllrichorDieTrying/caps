@@ -1,6 +1,6 @@
 'use strict';
 
-const eventPool = require('../eventPool');
+const eventPool = require('../../eventPool');
 
 eventPool.on('PICKUP', driverEvent);
 
