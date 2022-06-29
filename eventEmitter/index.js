@@ -1,8 +1,8 @@
 'use strict';
 
 const eventPool = require('./eventPool');
-require('./clients/driver');
-require('./clients/vendor');
+require('../sockets/clients/driver');
+require('../sockets/clients/vendor');
 
 // log events
 eventPool.on('ORDER', (payload) => logger('ORDER', payload));
