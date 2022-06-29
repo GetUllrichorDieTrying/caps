@@ -1,7 +1,7 @@
 'use strict';
 
 const eventPool = require('../eventPool');
-const order = require('../chance');
+const order = require('../../chance');
 
 // console.log(order);
 eventPool.on('DELIVERED', delivered);
