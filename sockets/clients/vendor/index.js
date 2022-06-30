@@ -1,35 +1,15 @@
 'use strict';
 
-const Chance = require('chance');
-const chance = new Chance();
+const order = require('../chance');
 
 const { io } = require('socket.io-client');
 // acknowledge a connection, no subscriptions have occurred yet
-const socket = io('http://localhost:3002');
-
-const createSendMessage = require('./sendMessage');
+const socket = io('http://localhost:3001/caps');
 const handleReceived = require('./handleReceived');
-const sendMessage = createSendMessage(socket);
 
-socket.on('RECEIVED', handleReceived);
+socket.emit('JOIN', order.store);
+socket.on('DELIVERED', handleReceived);
 
 setInterval(() => {
-  sendMessage(`Hi ${chance.first()}`);
+  socket.emit('PICKUP', order);
 }, 3000);
-
-// 'use strict';
-
-// const eventPool = require('../../../eventEmitter/eventPool');
-// const order = require('../../../eventEmitter/chance');
-
-// eventPool.on('DELIVERED', delivered);
-
-// function delivered(payload) {
-//   console.log('VENDOR: THANK YOU FOR DELIVERING OUR ORDER:', payload.orderID);
-// }
-
-// setInterval(() => {
-//   eventPool.emit('PICKUP', order);
-// }, 3000);
-
-// module.exports = delivered;

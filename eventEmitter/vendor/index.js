@@ -7,7 +7,7 @@ const order = require('../../chance');
 eventPool.on('DELIVERED', delivered);
 
 function delivered(payload) {
-  console.log('VENDOR: THANK YOU FOR DELIVERING OUR ORDER:', payload.orderID);
+  console.log('VENDOR: THANK YOU FOR DELIVERING OUR ORDER:', payload.orderId);
 }
 
 setInterval(() => {

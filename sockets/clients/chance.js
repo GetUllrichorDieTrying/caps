@@ -3,11 +3,9 @@
 const Chance = require('chance');
 const chance = new Chance();
 
-let order = {
-  store: chance.company(),
+module.exports = {
+  store: 'The Money Making Group',
   orderId: chance.guid(),
   customer: chance.name(),
   address: chance.address(),
 };
-
-module.exports = order;
