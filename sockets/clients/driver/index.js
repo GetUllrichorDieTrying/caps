@@ -1,18 +1,30 @@
 'use strict';
 
-const { io } = require('socket.io-client');
-// acknowledge a connection, no subscriptions have occurred yet
-const socket = io('http://localhost:3001/caps');
+const DriverClient = require('./driverClient');
 
-socket.on('PICKUP', (payload) => {
+let acmeDriver = new DriverClient('acme-widgets');
+let flowerDriver = new DriverClient('1-555-flowers');
+
+acmeDriver.subscribe('PICKUP', (payload) => {
   setTimeout(() => {
-    console.log(payload);
     console.log(`DRIVER: picked up order ${payload.orderId}`);
-    socket.emit('IN-TRANSIT', payload);
+    acmeDriver.publish('IN-TRANSIT', payload);
   }, 1000);
 
   setTimeout(() => {
     console.log(`DRIVER: delivered order ${payload.orderId}`);
-    socket.emit('DELIVERED', payload);
+    acmeDriver.publish('DELIVERED', payload);
+  }, 3000);
+});
+
+flowerDriver.subscribe('PICKUP', (payload) => {
+  setTimeout(() => {
+    console.log(`DRIVER: picked up order ${payload.orderId}`);
+    flowerDriver.publish('IN-TRANSIT', payload);
+  }, 1000);
+
+  setTimeout(() => {
+    console.log(`DRIVER: delivered order ${payload.orderId}`);
+    flowerDriver.publish('DELIVERED', payload);
   }, 3000);
 });
